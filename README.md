@@ -1,9 +1,10 @@
 # shopifydsinternchallenge
 
 Question 1:
+
+```
 import pandas as pd
 import matplotlib.pyplot as plt
-```
 df = pd.read_csv('2019 Winter Data Science Intern Challenge Data Set - Sheet1.csv')
 ```
 
@@ -34,7 +35,7 @@ plt.show()
 #Boxplot clearly shows extreme outliers. Since mean value (AOV) is sensitive to outliers, an alternative method
 is to use median value. However, if outliers can be removed, the AOV value will be more realistic.
 
-#1) use median value
+S1) use median value
 
 ```
 print(df['order_amount'].median())
@@ -42,7 +43,7 @@ print(df['order_amount'].median())
 
 #Another metric we can look into is the median, which will result in $284 for each order.
 
-#2) remove outlier
+S2) remove outlier
 #Assuming the high level goal is to understand TYPICAL consumers buying behavior, we can safely remove outliers
 
 ```
@@ -56,7 +57,9 @@ df = df[~((df < (Q1 - 1.5 * IQR)) |(df > (Q3 + 1.5 * IQR))).any(axis=1)]
 
 print(df['order_amount'].describe())
 ```
+
 #boxplot to display data distribution
+
 ```
 df.boxplot(column='order_amount')
 
@@ -70,6 +73,7 @@ plt.show()
 
 
 Question 2: 
+
 a) 54
 ```
 SELECT COUNT(OrderID) AS total_orders_by_speedy_express
@@ -157,7 +161,9 @@ First, join these four tables,
 filter out the rows with country = Germany
 group by product_id
 order by how many counts for every product
-=> output product id and product name
+
+=> output product name and total ordered amount
+
 => if more than two products ordered the most by customers in Germany, we can use similar approach like question 2b 
 
 

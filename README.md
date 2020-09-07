@@ -47,27 +47,33 @@ S2) remove outlier
 #Assuming the high level goal is to understand TYPICAL consumers buying behavior, we can safely remove outliers
 
 ```
-Q1 = df.quantile(0.25)
+unique_order_amount = df['order_amount'].sort_values(ascending=False).unique()
 
-Q3 = df.quantile(0.75)
+print(unique_order_amount)
+```
 
-IQR = Q3 - Q1
+#extreme values: 704000 154350 102900  77175  51450  25725
+#However, to avoid flasely deleting all extreme values, I look through their total_items, only first one (704000) indicates atypical purchase behavior.
 
-df = df[~((df < (Q1 - 1.5 * IQR)) |(df > (Q3 + 1.5 * IQR))).any(axis=1)]
+#delete order_amount == 704000
+
+```
+df = df[df['order_amount'] != 704000]
 
 print(df['order_amount'].describe())
 ```
 
-#boxplot to display data distribution
+#display boxplot 
 
 ```
 df.boxplot(column='order_amount')
-
-plt.title('Order Amount Boxplot (Removed Extreme Outliers)')
-
+plt.title('Order Amount Boxplot (Removed Outliers (704000))')
 plt.show()
 ```
-#Removed 141 outliers, mean is $293.72
+
+#Removed 17 outlier, mean is $754.09
+
+#Although the graph still shows many outliers, the mean value decreases significantly.
 
 ![Image of Boxplot2 (with outliers)](https://github.com/candichen66/shopifydsinternchallenge/blob/master/boxplot2.png)
 

@@ -25,6 +25,11 @@ df.boxplot(column='order_amount')
 plt.title('Order Amount Boxplot')
 
 plt.show()
+
+![Image of Boxplot1]
+(https://github.com/candichen66/shopifydsinternchallenge/blob/master/boxplot1.png)
+
+
 #Boxplot clearly shows extreme outliers. Since mean value (AOV) is sensitive to outliers, an alternative method
 #is to use median value. However, if outliers can be removed, the AOV value will be more realistic.
 
@@ -54,6 +59,9 @@ plt.title('Order Amount Boxplot (Removed Extreme Outliers)')
 plt.show()
 
 #Removed 141 outliers, mean is $293.72
+
+![Image of Boxplot2 (with outliers)]
+(https://github.com/candichen66/shopifydsinternchallenge/blob/master/boxplot2.png)
 
 
 Question 2: 

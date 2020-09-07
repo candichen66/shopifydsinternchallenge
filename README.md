@@ -60,49 +60,74 @@ Question 2:
 a) 54
 
 SELECT COUNT(OrderID) AS total_orders_by_speedy_express
+
 FROM [Orders] JOIN [Shippers]
+
 	ON Orders.ShipperID = Shippers.ShipperID
+	
 WHERE ShipperName = 'Speedy Express'
 
 
 b) Peakcock
 
 SELECT Employees.LastName, COUNT(*) AS total_orders
+
 FROM [Employees] JOIN [Orders]
+
 	ON Employees.EmployeeID = Orders.EmployeeID
+	
 GROUP BY Employees.EmployeeID
+
 ORDER BY COUNT(*) DESC
 
 First result shows peacock, 40 total orders 
 
 Thought Process: Simple solution won’t consider edge cases. What about two employees with the same most orders amount?
-
 Solution when two or more employees with the highest number of orders: 
 
 SELECT Employees.LastName
+
 FROM [Employees] JOIN [Orders]
+
 	ON Employees.EmployeeID = Orders.EmployeeID
+	
 GROUP BY Employees.EmployeeID
+
 HAVING COUNT(*) IN 
+
 (SELECT COUNT(*) AS most_orders
+
 FROM [Employees] JOIN [Orders]
+
 	ON Employees.EmployeeID = Orders.EmployeeID
+	
 GROUP BY Employees.EmployeeID
+
 ORDER BY COUNT(*) DESC
+
 LIMIT 1)
 
 
 c) Gorgonzola Telino
 
 SELECT Products.ProductName, COUNT(Products.ProductID) AS total_ordered_amount
+
 FROM [Orders] JOIN [Customers] 
+
 	ON Orders.CustomerID = Customers.CustomerID
+	
     JOIN [OrderDetails] 
+    
     ON OrderDetails.OrderID = Orders.OrderID
+    
     JOIN [Products] 
+    
     ON Products.ProductID = OrderDetails.ProductID
+    
 WHERE Customers.Country = 'Germany'
+
 GROUP BY Products.ProductID
+
 ORDER BY COUNT(Products.ProductID) DESC
 
 Thought process:

@@ -77,6 +77,8 @@ plt.show()
 
 ![Image of Boxplot2 (with outliers)](https://github.com/candichen66/shopifydsinternchallenge/blob/master/boxplot2.png)
 
+![Image of Boxplot2 (with outliers)](https://github.com/candichen66/shopifydsinternchallenge/blob/master/beforeAfterOutlier.png)
+
 
 Question 2: 
 
